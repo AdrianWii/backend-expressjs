@@ -1,4 +1,5 @@
 import express from "express";
+import movieRoute from "./routes/movies.routes.js";
 
 const app = express();
 
@@ -10,31 +11,8 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/api/movies", (req, res) => {
+app.use("/", movieRoute);
 
-    const movies = [
-        {
-            title: "Avatar",
-            director: "James Cameron"
-        },
-        {
-            title: "Interstellar",
-            director: "XYZ"
-        }
-    ];
-
-    res.json(movies);
-})
-
-app.post("/api/movies", (req, res, next) => {
-  const movie = req.body;
-
-  if( !movie.title ) {
-    return next(new Error("Provide title"));
-  }
-
-  res.status(201).json({message: "Dodano film", ...movie});
-});
 
 app.use((err, req, res, next) => {
   res.status(500).json({

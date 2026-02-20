@@ -26,12 +26,21 @@ app.get("/api/movies", (req, res) => {
     res.json(movies);
 })
 
-app.post("/api/movies", (req, res) => {
+app.post("/api/movies", (req, res, next) => {
   const movie = req.body;
-  
+
+  if( !movie.title ) {
+    return next(new Error("Provide title"));
+  }
+
   res.status(201).json({message: "Dodano film", ...movie});
 });
 
+app.use((err, req, res, next) => {
+  res.status(500).json({
+    error: err.message
+  });
+});
 
 app.listen(port, () => {
   console.log(`http://localhost:${port} on port ${port}`);

@@ -1,15 +1,6 @@
-export function getMovies(req, res) {
-  const movies = [
-    {
-      title: "Avatar",
-      director: "James Cameron",
-    },
-    {
-      title: "Interstellar",
-      director: "XYZ",
-    },
-  ];
+import { movies } from "../data/movie.data.js";
 
+export function getMovies(req, res) {
   res.json(movies);
 }
 
@@ -19,6 +10,13 @@ export function createMovie(req, res, next) {
   if (!movie.title) {
     return next(new Error("Provide title"));
   }
+
+  movies.push({
+    id: movies.length +1,
+    title: movie.title,
+    director: movie.director,
+    likes: 0
+  })
 
   res.status(201).json({ message: "Dodano film", ...movie });
 }

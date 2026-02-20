@@ -3,7 +3,7 @@ import { createMovie, getMovies } from "../controllers/movies.controllers.js";
 
 const movieRoute = Router();
 
-movieRoute.get("/api/movies", getMovies)
-movieRoute.post("/api/movies", createMovie);
+movieRoute.get("/", getMovies)
+movieRoute.post("/", createMovie);
 
 export default movieRoute;

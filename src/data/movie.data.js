@@ -1,3 +1,7 @@
+// adrianwidlak93_db_user
+// x38hoG9o8eslNNlT
+// mongodb+srv://adrianwidlak93_db_user:x38hoG9o8eslNNlT@cluster0.kgo0tnp.mongodb.net/
+
 export const movies = [
   {
     id: 1,

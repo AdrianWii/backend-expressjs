@@ -1,9 +1,19 @@
 import { movies } from "../data/movie.data.js";
 import { Movie } from "../models/Movie.js";
 
-export function getMovies(req, res) {
-  res.json(movies);
-}
+// export function getMovies(req, res) {
+//   res.json(movies);
+// }
+
+export const getMovies = async (req, res) => {
+  try {
+    const movies = await Movie.find();
+    res.status(200).json(movies);
+  } catch (e) {
+    res.status(404).json({ message: `Not found ${e.message}` });
+  }
+};
+
 
 export const createMovie = async (req, res, next) => {
   const movie = req.body;
